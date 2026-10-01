@@ -1,114 +1,36 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rutinas y Protocolos - Agustín</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        .glass-panel { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
-    </style>
-</head>
-<body class="bg-slate-900 text-slate-200 min-h-screen p-4 md:p-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#152027">
+<title>Protocolo diario de suplementación – Agustín</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#152027; --surface:#1C2A32; --surface-2:#22333C; --line:#2E424C;
+    --text:#ECE7DE; --muted:#9CA9AF;
+    --a:#C9485B; --b:#5B8DC4; --c:#82AE8F; --warn:#DDAA4A;
+    --accent:var(--a);
+    --serif:"Instrument Serif", Georgia, "Times New Roman", serif;
+    --sans:"Manrope", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *,*::before,*::after{box-sizing:inherit}
+  html{scroll-padding-top:env(safe-area-inset-top,0px)}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:var(--sans); font-size:16px; line-height:1.55;
+    -webkit-font-smoothing:antialiased; -webkit-text-size-adjust:100%; text-size-adjust:100%;
+    overflow-wrap:anywhere;
+    background-image:radial-gradient(1200px 500px at 85% -10%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 70%);
+    transition:background-image .4s;
+  }
+  .wrap{max-width:760px; margin:0 auto; padding:48px 20px 64px}
 
-    <div class="max-w-6xl mx-auto space-y-8">
-        
-        <header class="text-center pb-6 border-b border-slate-700">
-            <h1 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-2">OPTIMIZACIÓN BIOQUÍMICA</h1>
-            <p class="text-sm font-semibold tracking-widest text-slate-400 uppercase">
-                Agustín • RACSA • Muay Thai • Low Carb
-            </p>
-        </header>
-
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            
-            <!-- Protocolo A -->
-            <section class="glass-panel rounded-2xl overflow-hidden shadow-2xl border-t-4 border-red-600">
-                <div class="bg-red-600/20 p-4 border-b border-red-600/30 flex items-center">
-                    <i class="fas fa-hand-rock text-red-500 text-2xl mr-3"></i>
-                    <h2 class="text-lg font-bold text-white uppercase tracking-wider">A: Entrenamiento (Muay Thai)</h2>
-                </div>
-                <div class="p-5">
-                    <table class="w-full text-sm text-left">
-                        <thead class="text-xs text-slate-400 uppercase bg-slate-800/50">
-                            <tr><th class="px-3 py-2 rounded-tl">Hora</th><th class="px-3 py-2 rounded-tr">Suplemento</th></tr>
-                        </thead>
-                        <tbody class="divide-y divide-slate-700">
-                            <tr><td class="px-3 py-2 font-mono text-red-400">07:30 AM</td><td class="px-3 py-2 font-bold">Gelicart + Vit C + Probióticos/Vit D[span_0](start_span)[span_0](end_span)</td></tr>
-                            <tr><td class="px-3 py-2 font-mono text-red-400">08:00 AM</td><td class="px-3 py-2 font-bold">Lion's Mane (1 Cap)</td></tr>
-                            <tr><td class="px-3 py-2 font-mono text-red-400">12:00 PM</td><td class="px-3 py-2"><span class="text-amber-400 font-bold">Mega Men 50+</span> + Omega-3 (Con almuerzo)</td></tr>
-                            <tr><td class="px-3 py-2 font-mono text-red-400">03:00 PM</td><td class="px-3 py-2 font-bold">Sabroxy + Cordyceps</td></tr>
-                            <tr><td class="px-3 py-2 font-mono text-red-400">03:30 PM</td><td class="px-3 py-2 font-bold">Alpha GPC</td></tr>
-                            <tr><td class="px-3 py-2 font-mono text-red-400">04:15 PM</td><td class="px-3 py-2 font-bold">Dynamine + Electrolitos + ½ Banano</td></tr>
-                            <tr><td class="px-3 py-2 font-mono text-red-400">05:00 PM</td><td class="px-3 py-2 font-bold">Kanna FSK-53 (Solo Sparring)</td></tr>
-                            <tr><td class="px-3 py-2 font-mono text-red-400">07:00 PM</td><td class="px-3 py-2 font-bold">Iso Whey Zero[span_1](start_span)[span_1](end_span) + Creatina (Post-clase)</td></tr>
-                            <tr><td class="px-3 py-2 font-mono text-red-400">Noche</td><td class="px-3 py-2 font-bold">Magnesio + Melanoctina[span_2](start_span)[span_2](end_span)</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-
-            <!-- Protocolo B -->
-            <section class="glass-panel rounded-2xl overflow-hidden shadow-2xl border-t-4 border-blue-600">
-                <div class="bg-blue-600/20 p-4 border-b border-blue-600/30 flex items-center">
-                    <i class="fas fa-brain text-blue-500 text-2xl mr-3"></i>
-                    <h2 class="text-lg font-bold text-white uppercase tracking-wider">B: Estrategia (RACSA)</h2>
-                </div>
-                <div class="p-5">
-                    <table class="w-full text-sm text-left">
-                        <thead class="text-xs text-slate-400 uppercase bg-slate-800/50">
-                            <tr><th class="px-3 py-2 rounded-tl">Hora</th><th class="px-3 py-2 rounded-tr">Suplemento</th></tr>
-                        </thead>
-                        <tbody class="divide-y divide-slate-700">
-                            <tr><td class="px-3 py-2 font-mono text-blue-400">07:30 AM</td><td class="px-3 py-2 font-bold">Gelicart + Vit C + Probióticos/Vit D[span_3](start_span)[span_3](end_span)</td></tr>
-                            <tr><td class="px-3 py-2 font-mono text-blue-400">08:00 AM</td><td class="px-3 py-2 font-bold">Lion's Mane + Café</td></tr>
-                            <tr><td class="px-3 py-2 font-mono text-blue-400">09:00 AM</td><td class="px-3 py-2 font-bold">Alpha GPC</td></tr>
-                            <tr><td class="px-3 py-2 font-mono text-blue-400">12:00 PM</td><td class="px-3 py-2"><span class="text-amber-400 font-bold">Mega Men 50+</span> + Omega-3 (Con almuerzo)</td></tr>
-                            <tr><td class="px-3 py-2 font-mono text-blue-400">03:30 PM</td><td class="px-3 py-2 font-bold">Iso Whey Zero[span_4](start_span)[span_4](end_span) (Opcional)</td></tr>
-                            <tr><td class="px-3 py-2 font-mono text-blue-400">Variable</td><td class="px-3 py-2 font-bold">Kanna FSK-53 (Manejo estrés)</td></tr>
-                            <tr><td class="px-3 py-2 font-mono text-blue-400">Noche</td><td class="px-3 py-2 font-bold">Magnesio + Melanoctina[span_5](start_span)[span_5](end_span) + Creatina</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-
-            <!-- Protocolo C -->
-            <section class="glass-panel rounded-2xl overflow-hidden shadow-2xl border-t-4 border-indigo-500">
-                <div class="bg-indigo-500/20 p-4 border-b border-indigo-500/30 flex items-center">
-                    <i class="fas fa-bed text-indigo-400 text-2xl mr-3"></i>
-                    <h2 class="text-lg font-bold text-white uppercase tracking-wider">C: Descanso (Días Off)</h2>
-                </div>
-                <div class="p-5">
-                    <table class="w-full text-sm text-left">
-                        <thead class="text-xs text-slate-400 uppercase bg-slate-800/50">
-                            <tr><th class="px-3 py-2 rounded-tl">Momento</th><th class="px-3 py-2 rounded-tr">Suplemento</th></tr>
-                        </thead>
-                        <tbody class="divide-y divide-slate-700">
-                            <tr><td class="px-3 py-2 font-mono text-indigo-400">Mañana</td><td class="px-3 py-2 font-bold">Gelicart + Vit C + Probióticos/Vit D[span_6](start_span)[span_6](end_span)</td></tr>
-                            <tr><td class="px-3 py-2 font-mono text-indigo-400">Almuerzo</td><td class="px-3 py-2"><span class="text-amber-400 font-bold">Mega Men 50+</span> + Omega-3</td></tr>
-                            <tr><td class="px-3 py-2 font-mono text-indigo-400">Post-Fuerza</td><td class="px-3 py-2 font-bold">Iso Whey Zero[span_7](start_span)[span_7](end_span) + Creatina (Si hay circuito)</td></tr>
-                            <tr><td class="px-3 py-2 font-mono text-indigo-400">Día</td><td class="px-3 py-2 font-bold">Agua (Mín. 3 Litros)</td></tr>
-                            <tr><td class="px-3 py-2 font-mono text-indigo-400">Noche</td><td class="px-3 py-2 font-bold">Magnesio + Melanoctina[span_8](start_span)[span_8](end_span)</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-        </div>
-
-        <div class="glass-panel p-5 rounded-2xl border-l-4 border-amber-500 flex items-start gap-4">
-            <i class="fas fa-exclamation-triangle text-amber-500 text-2xl mt-1"></i>
-            <div>
-                <h3 class="font-bold text-lg mb-2 text-amber-500 uppercase">Reglas Críticas de Seguridad</h3>
-                <ul class="list-disc pl-5 space-y-1 text-sm text-slate-300">
-                    <li>Mega Men 50+ <strong>SIEMPRE</strong> con comida sólida (almuerzo).</li>
-                    <li>Tensión en mandíbula = Exceso de Acetilcolina. Bajar Alpha GPC a la mitad.</li>
-                    <li>Circuito de fuerza máximo 2-3 días por semana para evitar fatiga del SNC.</li>
-                </ul>
-            </div>
-        </div>
-
-    </div>
-</body>
-</html>
+  header h1{
+    font-family:var(--serif); font-weight:400; font-size:clamp(2.6rem,7vw,4.2rem);
