@@ -34,3 +34,188 @@
 
   header h1{
     font-family:var(--serif); font-weight:400; font-size:clamp(2.6rem,7vw,4.2rem);
+    line-height:1; letter-spacing:-.01em; margin:0 0 12px;
+  }
+  header p{margin:0; color:var(--muted); max-width:52ch}
+
+  /* Selector de protocolo */
+  .tabs{
+    position:sticky; top:env(safe-area-inset-top,0px); z-index:10;
+    backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+    background:color-mix(in srgb, var(--surface) 88%, transparent);
+    display:grid; grid-template-columns:repeat(3,1fr); gap:6px;
+    margin:36px 0 28px; padding:6px; border-radius:14px;
+    border:1px solid var(--line);
+  }
+  .tab{ min-height:52px; touch-action:manipulation; -webkit-tap-highlight-color:transparent;
+    font:inherit; font-weight:600; font-size:.92rem; color:var(--muted);
+    background:transparent; border:0; border-radius:10px; padding:12px 8px;
+    cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:2px;
+    transition:background .2s,color .2s;
+  }
+  .tab small{font-weight:500; font-size:.75rem; opacity:.8}
+  .tab:hover{color:var(--text)}
+  .tab[aria-selected="true"]{background:var(--surface-2); color:var(--text); box-shadow:inset 0 -2px 0 var(--tab-color)}
+  .tab:focus-visible{outline:2px solid var(--tab-color); outline-offset:2px}
+  .tab[data-p="a"]{--tab-color:var(--a)} .tab[data-p="b"]{--tab-color:var(--b)} .tab[data-p="c"]{--tab-color:var(--c)}
+
+  /* Línea de tiempo */
+  .panel[hidden]{display:none}
+  .panel h2{font-family:var(--serif); font-weight:400; font-size:2rem; margin:0 0 4px}
+  .panel .lead{color:var(--muted); margin:0 0 28px}
+  ol.timeline{list-style:none; margin:0; padding:0; position:relative}
+  ol.timeline::before{
+    content:""; position:absolute; left:94px; top:10px; bottom:10px; width:1px; background:var(--line);
+  }
+  .timeline li{display:grid; grid-template-columns:80px 1fr; column-gap:32px; padding:14px 0; position:relative}
+  .timeline li::before{
+    content:""; position:absolute; left:90px; top:24px; width:9px; height:9px; border-radius:50%;
+    background:var(--bg); border:2px solid var(--accent);
+  }
+  .time{
+    font-family:var(--serif); font-size:1.35rem; line-height:1.2; text-align:right;
+    font-variant-numeric:tabular-nums; color:var(--accent);
+  }
+  .time span{display:block; font-family:var(--sans); font-size:.72rem; color:var(--muted)}
+  .what{font-weight:700; margin:0 0 2px}
+  .why{margin:0; color:var(--muted); font-size:.95rem}
+  .opt{font-weight:500; font-size:.78rem; color:var(--muted); border:1px solid var(--line); border-radius:99px; padding:1px 8px; margin-left:6px; vertical-align:2px}
+  .key{color:var(--warn)}
+
+  /* Reglas */
+  .rules{
+    margin-top:48px; padding:24px; border-radius:16px;
+    background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--warn);
+  }
+  .rules h3{font-family:var(--serif); font-weight:400; font-size:1.6rem; margin:0 0 14px; color:var(--warn)}
+  .rules dl{margin:0; display:grid; gap:14px}
+  .rules dt{font-weight:700}
+  .rules dd{margin:2px 0 0; color:var(--muted)}
+
+  @media (max-width:560px){
+    body{font-size:15px}
+    .wrap{padding:28px 16px 48px}
+    header h1{font-size:2.5rem; margin-bottom:8px}
+    header p{font-size:.92rem}
+    .tabs{margin:22px -6px 22px; border-radius:12px}
+    .tab{font-size:.95rem; padding:10px 4px}
+    .panel h2{font-size:1.65rem}
+    .panel .lead{margin-bottom:18px; font-size:.92rem}
+    ol.timeline::before{left:71px}
+    .timeline li{grid-template-columns:58px 1fr; column-gap:26px; padding:12px 0}
+    .timeline li::before{left:67px; top:20px}
+    .time{font-size:1.1rem}
+    .time span{font-size:.68rem}
+    .time{overflow-wrap:normal; word-break:keep-all}
+    .why{font-size:.88rem}
+    .opt{display:inline-block; margin:4px 0 0; vertical-align:0}
+    .what .opt{margin-left:0}
+    .rules{margin-top:32px; padding:18px 16px}
+    .rules h3{font-size:1.4rem}
+    .rules dd{font-size:.9rem}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header>
+    <h1>Protocolo diario</h1>
+    <p>Suplementación según el tipo de día: entrenamiento de Muay Thai, jornada estratégica en RACSA o descanso. Base alimentaria low carb.</p>
+  </header>
+
+  <div class="tabs" role="tablist" aria-label="Tipo de día">
+    <button class="tab" role="tab" id="t-a" data-p="a" aria-selected="true" aria-controls="p-a">A<small>Entrenamiento</small></button>
+    <button class="tab" role="tab" id="t-b" data-p="b" aria-selected="false" aria-controls="p-b" tabindex="-1">B<small>Estrategia</small></button>
+    <button class="tab" role="tab" id="t-c" data-p="c" aria-selected="false" aria-controls="p-c" tabindex="-1">C<small>Descanso</small></button>
+  </div>
+
+  <!-- A -->
+  <section class="panel" id="p-a" role="tabpanel" aria-labelledby="t-a">
+    <h2>Día de Muay Thai</h2>
+    <p class="lead">Rendimiento físico, reflejos y recuperación post-sparring.</p>
+    <ol class="timeline">
+      <li><div class="time">07:30<span>a. m.</span></div><div><p class="what">Gelicart + Vitamina C + Probióticos/Prebióticos</p><p class="why">Soporte articular y equilibrio de la microbiota.</p></div></li>
+      <li><div class="time">08:00<span>a. m.</span></div><div><p class="what">Lion's Mane</p><p class="why">Estímulo del factor de crecimiento nervioso (NGF).</p></div></li>
+      <li><div class="time">12:00<span>p. m.</span></div><div><p class="what"><span class="key">Mega Men 50+</span> + Omega-3 + Creatina</p><p class="why">Con el almuerzo para mejor tolerancia gástrica. Saturación diaria de creatina.</p></div></li>
+      <li><div class="time">03:00<span>p. m.</span></div><div><p class="what">Sabroxy + Cordyceps <span class="opt">Sabroxy 5 sí, 2 no</span></p><p class="why">Soporte dopaminérgico y capacidad aeróbica (VO₂ máx).</p></div></li>
+      <li><div class="time">03:30<span>p. m.</span></div><div><p class="what">Alpha GPC <span class="opt">5 sí, 2 no</span></p><p class="why">Aporte colinérgico para foco y reflejos.</p></div></li>
+      <li><div class="time">04:15<span>p. m.</span></div><div><p class="what">Dynamine + Electrolitos + ½ banano</p><p class="why">Energía rápida y prevención de calambres en low carb.</p></div></li>
+      <li><div class="time">05:00<span>p. m.</span></div><div><p class="what">Kanna FSK-53 <span class="opt">ver reglas</span></p><p class="why">Manejo de ansiedad y estrés durante el sparring.</p></div></li>
+      <li><div class="time">07:00<span>p. m.</span></div><div><p class="what">Iso Whey Zero</p><p class="why">Síntesis proteica post-entrenamiento.</p></div></li>
+      <li><div class="time">Todo<span>el día</span></div><div><p class="what">Agua, 3,5 a 4&nbsp;litros</p><p class="why">Reposición por sudoración del entrenamiento.</p></div></li>
+      <li><div class="time">Noche</div><div><p class="what">Magnesio bisglicinato 400&nbsp;mg + Melatonina</p><p class="why">Relajación neuromuscular y regulación del ciclo de sueño.</p></div></li>
+      <li><div class="time">Noche</div><div><p class="what">Ashwagandha <span class="opt">5 sí, 2 no</span></p><p class="why">Control de cortisol y mejor calidad de sueño.</p></div></li>
+    </ol>
+  </section>
+
+  <!-- B -->
+  <section class="panel" id="p-b" role="tabpanel" aria-labelledby="t-b" hidden>
+    <h2>Día de estrategia</h2>
+    <p class="lead">Claridad mental, memoria de trabajo y control del estrés.</p>
+    <ol class="timeline">
+      <li><div class="time">07:30<span>a. m.</span></div><div><p class="what">Gelicart + Vitamina C + Probióticos/Prebióticos</p><p class="why">Soporte inmune y salud intestinal.</p></div></li>
+      <li><div class="time">08:00<span>a. m.</span></div><div><p class="what">Lion's Mane + Cordyceps + Café</p><p class="why">Claridad mental, neuroprotección y energía sostenida.</p></div></li>
+      <li><div class="time">09:00<span>a. m.</span></div><div><p class="what">Alpha GPC <span class="opt">5 sí, 2 no</span></p><p class="why">Memoria de trabajo para análisis de datos.</p></div></li>
+      <li><div class="time">10:00<span>a. m.</span></div><div><p class="what">Electrolitos</p><p class="why">Reposición de sodio y potasio que se pierden en low carb.</p></div></li>
+      <li><div class="time">12:00<span>p. m.</span></div><div><p class="what"><span class="key">Mega Men 50+</span> + Omega-3 + Creatina</p><p class="why">Cofactores vitamínicos, apoyo antiinflamatorio y saturación de creatina.</p></div></li>
+      <li><div class="time">03:30<span>p. m.</span></div><div><p class="what">Iso Whey Zero <span class="opt">opcional</span></p><p class="why">Saciedad y preservación de masa magra.</p></div></li>
+      <li><div class="time">Puntual<span>reuniones</span></div><div><p class="what">Kanna FSK-53 <span class="opt">ver reglas</span></p><p class="why">Modulación serotoninérgica en reuniones tensas.</p></div></li>
+      <li><div class="time">Todo<span>el día</span></div><div><p class="what">Agua, mínimo 3&nbsp;litros</p><p class="why">Hidratación base para rendimiento cognitivo.</p></div></li>
+      <li><div class="time">Noche</div><div><p class="what">Magnesio bisglicinato 400&nbsp;mg + Melatonina</p><p class="why">Sueño profundo y recuperación.</p></div></li>
+      <li><div class="time">Noche</div><div><p class="what">Ashwagandha <span class="opt">5 sí, 2 no</span></p><p class="why">Control de cortisol y mejor calidad de sueño.</p></div></li>
+    </ol>
+  </section>
+
+  <!-- C -->
+  <section class="panel" id="p-c" role="tabpanel" aria-labelledby="t-c" hidden>
+    <h2>Día de descanso</h2>
+    <p class="lead">Recuperación de tejidos y del sistema nervioso. Sin nootrópicos de ciclo ni Ashwagandha.</p>
+    <ol class="timeline">
+      <li><div class="time">Mañana</div><div><p class="what">Gelicart + Vitamina C + Probióticos/Prebióticos</p><p class="why">Regeneración de tejidos blandos.</p></div></li>
+      <li><div class="time">Mañana</div><div><p class="what">Lion's Mane + Cordyceps</p><p class="why">Base diaria: neuroprotección y función mitocondrial.</p></div></li>
+      <li><div class="time">Mañana</div><div><p class="what">Electrolitos</p><p class="why">Reposición de sodio y potasio que se pierden en low carb.</p></div></li>
+      <li><div class="time">Almuerzo</div><div><p class="what"><span class="key">Mega Men 50+</span> + Omega-3 + Creatina</p><p class="why">Minerales, ácidos grasos esenciales y saturación de creatina.</p></div></li>
+      <li><div class="time">Post-<span>fuerza</span></div><div><p class="what">Iso Whey Zero <span class="opt">si hay circuito</span></p><p class="why">Hipertrofia y recuperación muscular.</p></div></li>
+      <li><div class="time">Todo<span>el día</span></div><div><p class="what">Agua, mínimo 3&nbsp;litros</p><p class="why">Hidratación y recuperación general.</p></div></li>
+      <li><div class="time">Noche</div><div><p class="what">Magnesio bisglicinato 400&nbsp;mg + Melatonina</p><p class="why">Reducción de fatiga residual y mejor descanso.</p></div></li>
+    </ol>
+  </section>
+
+  <aside class="rules" aria-labelledby="rules-h">
+    <h3 id="rules-h">Reglas de seguridad</h3>
+    <dl>
+      <div><dt>Multivitamínico con comida</dt><dd>Mega Men 50+ siempre con el almuerzo; en ayunas los minerales (hierro, zinc) suelen causar náusea.</dd></div>
+      <div><dt>Ajuste colinérgico</dt><dd>Si aparece tensión mandibular o dolor de cabeza, reducir Alpha GPC a la mitad.</dd></div>
+      <div><dt>Kanna</dt><dd>No combinar con antidepresivos ISRS o IMAO. Probarlo primero en un día B antes de usarlo en sparring: en algunas personas reduce la agudeza.</dd></div>
+      <div><dt>Ciclado</dt><dd>Kanna, Sabroxy, Alpha GPC y Ashwagandha: 5 días sí, 2 no. Los días C son el descanso de todos ellos.</dd></div>
+      <div><dt>Carga del sistema nervioso</dt><dd>Circuito de fuerza máximo 2–3 días por semana; más anula el efecto del descanso.</dd></div>
+    </dl>
+  </aside>
+</main>
+
+<script>
+  const tabs=[...document.querySelectorAll('.tab')];
+  const colors={a:'--a',b:'--b',c:'--c'};
+  function select(tab){
+    tabs.forEach(t=>{
+      const on=t===tab;
+      t.setAttribute('aria-selected',on);
+      t.tabIndex=on?0:-1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden=!on;
+    });
+    document.documentElement.style.setProperty('--accent',`var(${colors[tab.dataset.p]})`);
+    try{localStorage.setItem('protocolo',tab.dataset.p)}catch(e){}
+  }
+  tabs.forEach((t,i)=>{
+    t.addEventListener('click',()=>{select(t); const tb=document.querySelector('.tabs'); if(tb.getBoundingClientRect().top<=1) window.scrollTo({top:tb.offsetTop-8,behavior:'smooth'});});
+    t.addEventListener('keydown',e=>{
+      if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft')return;
+      const n=tabs[(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length];
+      n.focus(); select(n);
+    });
+  });
+  try{const g=localStorage.getItem('protocolo'); const t=tabs.find(x=>x.dataset.p===g); if(t) select(t);}catch(e){}
+</script>
+</body>
+</html>
